@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DisplayPicturesCell" id="gTV-IL-0wX" customClass="DisplayPicturesCell">
+            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iJy-cN-xR0"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zTM-zb-k6g" userLabel="choose btn">
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="zTM-zb-k6g" secondAttribute="height" multiplier="24:25" id="EZ5-9v-UxG"/>
+                            <constraint firstAttribute="width" constant="24" id="gPE-BJ-jg9"/>
+                        </constraints>
+                        <state key="normal" image="icon_common_picker_unselected"/>
+                        <state key="selected" image="icon_common_picker_selected"/>
+                        <connections>
+                            <action selector="onChooseClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="YQe-m8-epU"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="iJy-cN-xR0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Elq-HU-WWu"/>
+                <constraint firstItem="iJy-cN-xR0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="LoE-ov-yMB"/>
+                <constraint firstAttribute="trailing" secondItem="iJy-cN-xR0" secondAttribute="trailing" id="NeY-8W-w0G"/>
+                <constraint firstAttribute="bottom" secondItem="iJy-cN-xR0" secondAttribute="bottom" id="URf-f2-gQF"/>
+                <constraint firstItem="zTM-zb-k6g" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="sh7-HY-9la"/>
+                <constraint firstAttribute="trailing" secondItem="zTM-zb-k6g" secondAttribute="trailing" id="zmk-3T-2aO"/>
+            </constraints>
+            <size key="customSize" width="88" height="71"/>
+            <connections>
+                <outlet property="pictureImageView" destination="iJy-cN-xR0" id="4R2-no-7gR"/>
+            </connections>
+            <point key="canvasLocation" x="53" y="64.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="icon_common_picker_selected" width="24" height="25"/>
+        <image name="icon_common_picker_unselected" width="24" height="25"/>
+    </resources>
+</document>
