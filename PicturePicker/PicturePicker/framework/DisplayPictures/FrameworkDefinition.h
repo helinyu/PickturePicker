@@ -10,6 +10,7 @@
 #define FrameworkDefinition_h
 
 #define pictures_finishedChoice_text @"完成"
+#define pictures_preview_text @"预览"
 
 
 #endif /* FrameworkDefinition_h */

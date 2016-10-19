@@ -9,9 +9,6 @@
 #import "DisplayPicturesCell.h"
 
 @interface DisplayPicturesCell ()
-{
-//    NSInteger _index;
-}
     
 @property (assign, nonatomic) NSInteger row;
 @property (strong, nonatomic) NSIndexPath *indexPath;
@@ -30,13 +27,9 @@
     self.pictureImageView.image = [UIImage imageWithCGImage:asset.thumbnail];
     self.choiceBtn.selected = selected;
     self.choiceBtn.tag = selectedIndex;
-//    [self layoutIfNeeded];
-
 }
 
 - (IBAction)onChooseClicked:(id)sender {
-  
-    NSLog(@"choose this image");
 
     if ([self.selectedDataSource respondsToSelector:@selector(updateSelectedPictureWithIndex:withSelectedOrNot:)]) {
         [self.selectedDataSource updateSelectedPictureWithIndex:self.choiceBtn.tag withSelectedOrNot:!self.choiceBtn.selected];

@@ -12,6 +12,9 @@
 #import "Helper+System.h"
 #import "FrameworkDefinition.h"
 
+#define choiceNumberAndAllRatio_DisplayOnTitle self.navigationItem.title = [NSString stringWithFormat:@"%lu/%d",(unsigned long)_selectIndeses.count,_numberOfAsset];
+
+
 #define String(CellCalssName) NSStringFromClass([CellCalssName class])
 #define DISPLAYPICTURECELL_STRING String(DisplayPicturesCell)
 #define TAKEPICTURECELL_STRING String(TakePictureCell)
@@ -29,8 +32,8 @@
 @interface DisplayPictures ()<DisplayPicturesCellSelectedDataSource>
 {
     NSMutableArray<ALAsset*> *_pictureSources;
+    NSInteger _numberOfAsset;
     NSMutableArray * _selectIndeses;
-    
     PicturesDisplayStyle _picturesDisplayStyle;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *displayCollectionView;
@@ -45,11 +48,11 @@
     [super viewDidLoad];
     
     [self configureNomalVariables];
-    [self configureVariableOfCollectionViewCellAtInitState];
+    [self initUIkitVariable];
     [self configureDataSourceAtInitState];
 }
 
-- (void)configureVariableOfCollectionViewCellAtInitState {
+- (void)initUIkitVariable {
     
     [self.displayCollectionView registerNib:[UINib nibWithNibName:DISPLAYPICTURECELL_STRING bundle:nil] forCellWithReuseIdentifier:DISPLAYPICTURECELL_STRING];
     [self.displayCollectionView registerNib:[UINib nibWithNibName:TAKEPICTURECELL_STRING bundle:nil] forCellWithReuseIdentifier:TAKEPICTURECELL_STRING];
@@ -60,6 +63,15 @@
         self.displayCollectionView.prefetchDataSource = self;
         self.displayCollectionView.prefetchingEnabled = true;
     }
+    
+    if (self.navigationController) {
+        UIBarButtonItem *lastSecondRightBtnItem = [[UIBarButtonItem alloc] initWithTitle:pictures_preview_text style:UIBarButtonItemStylePlain target:self action:@selector(onPicturePreview:)];
+        lastSecondRightBtnItem.tintColor = [UIColor redColor];
+        UIBarButtonItem *lastRightBtnItem = [[UIBarButtonItem alloc] initWithTitle:pictures_finishedChoice_text style:UIBarButtonItemStylePlain target:self action:@selector(pictureChoiceHasFinished:)];
+        lastRightBtnItem.tintColor = [UIColor blueColor];
+        
+        self.navigationItem.rightBarButtonItems = @[lastRightBtnItem,lastSecondRightBtnItem];;
+    }
 
 }
 
@@ -67,10 +79,6 @@
     _pictureSources = [NSMutableArray<ALAsset*> new];
     _selectIndeses = [NSMutableArray new];
     
-    if (self.navigationController) {
-        UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithTitle:pictures_finishedChoice_text style:UIBarButtonItemStylePlain target:self action:@selector(pictureChiceHasFinished:)];
-        self.navigationItem.rightBarButtonItem = rightBtnItem;
-    }
     
     if (_numberOfcolumn <= 0) {
         _numberOfcolumn = CELL_NUMBER_PER_ROW;
@@ -79,20 +87,29 @@
 }
 
 - (void)configureDataSourceAtInitState {
-    [PictureDatasources requestAllPhotoFromAlbumWithALAssetsGroup:^(ALAssetsGroup *result) {
-        NSLog(@"group is : %@",result);
-        [result enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+    [PictureDatasources requestAllPhotoFromAlbumWithALAssetsGroup:^(ALAssetsGroup *resultOfGroup) {
+        NSLog(@"group is : %@",resultOfGroup);
+        [resultOfGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
             if ( result == nil || index == NSIntegerMax || index == NSUIntegerMax ) {
                 [self.displayCollectionView reloadData];
                 return ;
             }
             [_pictureSources addObject:result];
+            _numberOfAsset = resultOfGroup.numberOfAssets;
+
+            choiceNumberAndAllRatio_DisplayOnTitle
+
         }];
     }];
 }
     
 #pragma mark -- UIbarButton
-- (void)pictureChiceHasFinished:(UIBarButtonItem *)btnItem {
+    
+- (void)onPicturePreview:(UIBarButtonItem *) btnItem {
+    NSLog(@"预览选择的图片");
+}
+    
+- (void)pictureChoiceHasFinished:(UIBarButtonItem *)btnItem {
     NSLog(@"完成选择");
 
     [self.navigationController popViewControllerAnimated:true];
@@ -186,6 +203,7 @@
         }
     }
     [self.displayCollectionView reloadItemsAtIndexPaths:@[selectIndexPath]];
+    choiceNumberAndAllRatio_DisplayOnTitle
     return true;
 }
     
@@ -217,6 +235,8 @@
     NSLog(@"cancelPrefetchingForItemsAtIndexPaths");
 }
 
+#pragma mark -- for outside method
+    
 - (void)showPhotoLibraryPhtosFrom:(UIViewController*)fromController Complete:(ArrayALAssetsBlock)callback {
     if (fromController.navigationController) {
         [fromController.navigationController pushViewController:self animated:true];
