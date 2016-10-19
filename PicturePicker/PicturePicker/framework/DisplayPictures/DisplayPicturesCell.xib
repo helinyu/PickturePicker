@@ -40,6 +40,7 @@
             </constraints>
             <size key="customSize" width="88" height="71"/>
             <connections>
+                <outlet property="choiceBtn" destination="zTM-zb-k6g" id="Dqg-I2-8FP"/>
                 <outlet property="pictureImageView" destination="iJy-cN-xR0" id="4R2-no-7gR"/>
             </connections>
             <point key="canvasLocation" x="53" y="64.5"/>

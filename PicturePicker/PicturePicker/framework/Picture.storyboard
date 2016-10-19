@@ -39,7 +39,6 @@
                                 <connections>
                                     <outlet property="dataSource" destination="ndX-46-D6c" id="CgS-og-SKL"/>
                                     <outlet property="delegate" destination="ndX-46-D6c" id="I1u-v5-dS8"/>
-                                    <outlet property="prefetchDataSource" destination="ndX-46-D6c" id="TdY-UU-9eQ"/>
                                 </connections>
                             </collectionView>
                         </subviews>

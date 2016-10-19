@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DCBB50571DB7156700E787CF /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DCBB50561DB7156700E787CF /* Helper.m */; };
+		DCBB50631DB715FD00E787CF /* Helper+System.m in Sources */ = {isa = PBXBuildFile; fileRef = DCBB50621DB715FD00E787CF /* Helper+System.m */; };
 		DCE7047B1DB4E95000376E82 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE7047A1DB4E95000376E82 /* main.m */; };
 		DCE7047E1DB4E95000376E82 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE7047D1DB4E95000376E82 /* AppDelegate.m */; };
 		DCE704811DB4E95000376E82 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE704801DB4E95000376E82 /* ViewController.m */; };
@@ -44,6 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DCBB50551DB7156700E787CF /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
+		DCBB50561DB7156700E787CF /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
+		DCBB50611DB715FD00E787CF /* Helper+System.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Helper+System.h"; sourceTree = "<group>"; };
+		DCBB50621DB715FD00E787CF /* Helper+System.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Helper+System.m"; sourceTree = "<group>"; };
 		DCE704761DB4E95000376E82 /* PicturePicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicturePicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE7047A1DB4E95000376E82 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DCE7047C1DB4E95000376E82 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -102,6 +108,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DCBB50541DB7155900E787CF /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				DCBB50551DB7156700E787CF /* Helper.h */,
+				DCBB50561DB7156700E787CF /* Helper.m */,
+				DCBB50611DB715FD00E787CF /* Helper+System.h */,
+				DCBB50621DB715FD00E787CF /* Helper+System.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		DCE7046D1DB4E95000376E82 = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				DCF1B2721DB5F02A000B240D /* Picture.storyboard */,
+				DCBB50541DB7155900E787CF /* Helper */,
 				DCF1B2811DB5F042000B240D /* DisplayPictures */,
 				DCF1B2731DB5F02A000B240D /* Resources */,
 				DCF1B2751DB5F02A000B240D /* Services */,
@@ -350,6 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCBB50631DB715FD00E787CF /* Helper+System.m in Sources */,
 				DCE704811DB4E95000376E82 /* ViewController.m in Sources */,
 				DCF1B2871DB5F042000B240D /* DisplayPictures.m in Sources */,
 				DCF1B2801DB5F02A000B240D /* ALAssetLibraryService.m in Sources */,
@@ -359,6 +378,7 @@
 				DCE7047B1DB4E95000376E82 /* main.m in Sources */,
 				DCF1B27F1DB5F02A000B240D /* BasicService.m in Sources */,
 				DCF1B2881DB5F042000B240D /* DisplayPicturesCell.m in Sources */,
+				DCBB50571DB7156700E787CF /* Helper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

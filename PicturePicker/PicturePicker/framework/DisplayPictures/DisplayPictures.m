@@ -9,6 +9,7 @@
 #import "DisplayPictures.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "PictureDatasources.h"
+#import "Helper+System.h"
 
 #define String(CellCalssName) NSStringFromClass([CellCalssName class])
 #define DISPLAYPICTURECELL_STRING String(DisplayPicturesCell)
@@ -18,9 +19,11 @@
 #define CELL_MIN_SPACING_FOR_LINE 5
 #define CELL_NUMBER_PER_ROW 5
 
-@interface DisplayPictures ()
+@interface DisplayPictures ()<DisplayPicturesCellSelectedDataSource>
 {
     NSMutableArray<ALAsset*> *_pictureSources;
+     BOOL _hasSelected;
+    NSMutableArray * _selectIndeses;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *displayCollectionView;
 
@@ -40,14 +43,20 @@ typedef void (^ALAssetsGroupBlock)(ALAssetsGroup *result);
 
 - (void)configureVariableOfCollectionViewCellAtInitState {
     [self.displayCollectionView registerNib:[UINib nibWithNibName:DISPLAYPICTURECELL_STRING bundle:nil] forCellWithReuseIdentifier:DISPLAYPICTURECELL_STRING];
-    self.displayCollectionView.prefetchingEnabled = true;
+    
     self.automaticallyAdjustsScrollViewInsets = false;
+    
+    if ([Helper isGreaterOrEqualToIOS10]) {
+        self.displayCollectionView.prefetchDataSource = self;
+        self.displayCollectionView.prefetchingEnabled = true;
+    }
+
 }
 
 - (void)configureNomalVariables {
     _pictureSources = [NSMutableArray<ALAsset*> new];
+    _selectIndeses = [NSMutableArray new];
 }
-
 
 - (void)configureDataSourceAtInitState {
     [PictureDatasources requestAllPhotoFromAlbumWithALAssetsGroup:^(ALAssetsGroup *result) {
@@ -71,13 +80,30 @@ typedef void (^ALAssetsGroupBlock)(ALAssetsGroup *result);
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     DisplayPicturesCell *picturesCell = [collectionView dequeueReusableCellWithReuseIdentifier:DISPLAYPICTURECELL_STRING forIndexPath:indexPath];
-    picturesCell.backgroundColor = [UIColor blueColor];
-    picturesCell.pictureImageView.image = [UIImage imageNamed:@"icon_common_picker_correct"];
-    picturesCell.pictureImageView.image = [UIImage imageWithCGImage:_pictureSources[indexPath.row].thumbnail];
-//    _pictureSources[indexPath.row] ;
+    
+    for (NSInteger index = 0; index < _selectIndeses.count; index++) {
+        if ([_selectIndeses[index] isEqual:@(indexPath.row)]) {
+            _hasSelected = true;
+            break;
+        }
+    }
+    
+    [picturesCell configureCellWithDataSource:_pictureSources[indexPath.row] andSelectedOrNot:_hasSelected withSelectedIndex:indexPath.row];
+    _hasSelected = false;
+    picturesCell.selectedDataSource = self;
     return picturesCell;
 }
 
+#pragma mark -- selectedDatasource
+
+- (BOOL)updateSelectedPictureWithIndex:(NSInteger)index withSelectedOrNot:(BOOL)selected{
+    NSIndexPath *selectIndexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    _hasSelected = true;
+    [_selectIndeses addObject:@(index)];
+    [self.displayCollectionView reloadItemsAtIndexPaths:@[selectIndexPath]];
+    return true;
+}
+    
 #pragma mark -- UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -101,7 +127,6 @@ typedef void (^ALAssetsGroupBlock)(ALAssetsGroup *result);
 - (void)collectionView:(UICollectionView *)collectionView cancelPrefetchingForItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths  NS_AVAILABLE_IOS(10_0) {
     NSLog(@"cancelPrefetchingForItemsAtIndexPaths");
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

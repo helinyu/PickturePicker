@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PicturePicker/framework/DisplayPictures/DisplayPictures.m"
-            timestampString = "498481244.033324"
+            timestampString = "498556483.855906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "-collectionView:layout:minimumLineSpacingForSectionAtIndex:"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PicturePicker/framework/DisplayPictures/DisplayPictures.m"
-            timestampString = "498481244.033324"
+            timestampString = "498556483.855906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "-collectionView:layout:minimumInteritemSpacingForSectionAtIndex:"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PicturePicker/framework/DisplayPictures/DisplayPictures.m"
-            timestampString = "498481244.033324"
+            timestampString = "498556483.855906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "@implementation DisplayPictures"
             landmarkType = "3">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PicturePicker/framework/DisplayPictures/DisplayPictures.m"
-            timestampString = "498481244.033324"
+            timestampString = "498556483.855906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "@implementation DisplayPictures"
             landmarkType = "3">
          </BreakpointContent>
@@ -74,28 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PicturePicker/framework/DisplayPictures/DisplayPictures.m"
-            timestampString = "498481244.033324"
+            timestampString = "498556483.855906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "-collectionView:layout:sizeForItemAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PicturePicker/framework/DisplayPictures/DisplayPictures.m"
-            timestampString = "498480729.566559"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "-configureDataSourceAtInitState"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
