@@ -222,6 +222,11 @@
        [self showPhotoLibraryPhtosFrom:fromController Complete:callback];
     _picturesDisplayStyle = style;
 }
+
+- (void)showPhotoLibraryPhtosFrom:(UIViewController*)fromController withPicturesDisplayStyle:(PicturesDisplayStyle)style withColumnsPerRow:(NSInteger)columnsPerRow Complete:(ArrayALAssetsBlock)callback {
+    [self showPhotoLibraryPhtosFrom:fromController withPicturesDisplayStyle:style Complete:callback];
+    _numberOfcolumn = columnsPerRow;
+}
     
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

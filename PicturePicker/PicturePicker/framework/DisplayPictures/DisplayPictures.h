@@ -19,6 +19,7 @@ typedef void (^ArrayALAssetsBlock)(NSMutableArray<ALAsset*>* result);
 
 - (void)showPhotoLibraryPhtosFrom:(UIViewController*)fromController Complete:(ArrayALAssetsBlock)callback;
 - (void)showPhotoLibraryPhtosFrom:(UIViewController*)fromController withPicturesDisplayStyle:(PicturesDisplayStyle)style Complete:(ArrayALAssetsBlock)callback;
+- (void)showPhotoLibraryPhtosFrom:(UIViewController*)fromController withPicturesDisplayStyle:(PicturesDisplayStyle)style withColumnsPerRow:(NSInteger)columnsPerRow Complete:(ArrayALAssetsBlock)callback ;
 
 @property (assign, nonatomic) NSInteger numberOfcolumn;
     

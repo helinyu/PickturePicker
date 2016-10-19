@@ -45,7 +45,14 @@
     dpViewController.numberOfcolumn = [self.inputTextfield.text integerValue];
     [dpViewController showPhotoLibraryPhtosFrom:self withPicturesDisplayStyle:_displayStyle Complete:^(NSMutableArray<ALAsset *> *result) {
         NSLog(@"alasset is : %@",result);
-    }];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([self.inputTextfield respondsToSelector:@selector(resignFirstResponder)]) {
+                [self.inputTextfield resignFirstResponder];
+            }
+        });
+   }];
+    
  }
     
 - (IBAction)onChangeDisPlayCellConditionClicked:(id)sender {
