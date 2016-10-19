@@ -29,7 +29,6 @@
 @interface DisplayPictures ()<DisplayPicturesCellSelectedDataSource>
 {
     NSMutableArray<ALAsset*> *_pictureSources;
-     BOOL _hasSelected;
     NSMutableArray * _selectIndeses;
     
     PicturesDisplayStyle _picturesDisplayStyle;
@@ -82,7 +81,6 @@
 - (void)configureDataSourceAtInitState {
     [PictureDatasources requestAllPhotoFromAlbumWithALAssetsGroup:^(ALAssetsGroup *result) {
         NSLog(@"group is : %@",result);
-//        NSUInteger resultCount = [result numberOfAssets];
         [result enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
             if ( result == nil || index == NSIntegerMax || index == NSUIntegerMax ) {
                 [self.displayCollectionView reloadData];
@@ -125,9 +123,11 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     DisplayPicturesCell *picturesCell = [collectionView dequeueReusableCellWithReuseIdentifier:DISPLAYPICTURECELL_STRING forIndexPath:indexPath];
     
+    BOOL hasSelected = false;
+    
     for (NSInteger index = 0; index < _selectIndeses.count; index++) {
         if ([_selectIndeses[index] isEqual:@(indexPath.row)]) {
-            _hasSelected = true;
+            hasSelected = true;
             break;
         }
     }
@@ -136,8 +136,8 @@
         case PicturesDisplayStyleDefaultOrNot:
         case PicturesDisplayStyleOutSide:
         {
-            [picturesCell configureCellWithDataSource:_pictureSources[indexPath.row] andSelectedOrNot:_hasSelected withSelectedIndex:indexPath.row];
-            _hasSelected = false;
+            [picturesCell configureCellWithDataSource:_pictureSources[indexPath.row] andSelectedOrNot:hasSelected withSelectedIndex:indexPath.row];
+            hasSelected = false;
             picturesCell.selectedDataSource = self;
             return picturesCell;
         }
@@ -149,8 +149,7 @@
                 return takePicturesCell;
             }
             
-            [picturesCell configureCellWithDataSource:_pictureSources[indexPath.row] andSelectedOrNot:_hasSelected withSelectedIndex:indexPath.row];
-            _hasSelected = false;
+            [picturesCell configureCellWithDataSource:_pictureSources[indexPath.row] andSelectedOrNot:hasSelected withSelectedIndex:indexPath.row];
             picturesCell.selectedDataSource = self;
             return picturesCell;
 
@@ -163,8 +162,7 @@
                 return takePicturesCell;
             }
 
-            [picturesCell configureCellWithDataSource:_pictureSources[indexPath.row-NUMBER_OF_TAKEPICTURECELL] andSelectedOrNot:_hasSelected withSelectedIndex:indexPath.row];
-            _hasSelected = false;
+            [picturesCell configureCellWithDataSource:_pictureSources[indexPath.row-NUMBER_OF_TAKEPICTURECELL] andSelectedOrNot:hasSelected withSelectedIndex:indexPath.row];
             picturesCell.selectedDataSource = self;
             return picturesCell;
 
@@ -177,8 +175,16 @@
 
 - (BOOL)updateSelectedPictureWithIndex:(NSInteger)index withSelectedOrNot:(BOOL)selected{
     NSIndexPath *selectIndexPath = [NSIndexPath indexPathForRow:index inSection:0];
-    _hasSelected = true;
-    [_selectIndeses addObject:@(index)];
+    if (selected) {
+        [_selectIndeses addObject:@(index)];
+    }else{
+        for (NSInteger inlineIndex = 0; inlineIndex < _selectIndeses.count; inlineIndex++ ) {
+            if ([_selectIndeses[inlineIndex] isEqual:@(index)]) {
+                [_selectIndeses removeObjectAtIndex:inlineIndex];
+                break;
+            }
+        }
+    }
     [self.displayCollectionView reloadItemsAtIndexPaths:@[selectIndexPath]];
     return true;
 }
