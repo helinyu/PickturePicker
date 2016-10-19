@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,18 +19,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPe-QB-TeP">
-                                <frame key="frameInset" minX="16" minY="79" width="227" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPe-QB-TeP">
                                 <state key="normal" title="相册图片（全部显示）"/>
                                 <connections>
                                     <action selector="onDisplayPhotoLibraryClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6ES-Lh-a5h"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="拍照功能存放的位置：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Vp-09-pR5">
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZdG-Yz-H3n">
+                                <segments>
+                                    <segment title="没有"/>
+                                    <segment title="外面"/>
+                                    <segment title="里面首位"/>
+                                    <segment title="里面末位"/>
+                                </segments>
+                                <connections>
+                                    <action selector="onChangeDisPlayCellConditionClicked:" destination="BYZ-38-t0r" eventType="valueChanged" id="dwh-Ck-KE8"/>
+                                </connections>
+                            </segmentedControl>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="一列多少行" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rMX-jg-Cyg">
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="行" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4d7-li-yEB">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="tPe-QB-TeP" secondAttribute="leading" constant="5" id="5zG-hu-Ace"/>
+                            <constraint firstItem="tPe-QB-TeP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="5" id="Ard-qF-WjO"/>
+                            <constraint firstItem="4d7-li-yEB" firstAttribute="leading" secondItem="rMX-jg-Cyg" secondAttribute="trailing" constant="2" id="BRK-tj-aN9"/>
+                            <constraint firstItem="7Vp-09-pR5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="MFF-iV-p5V"/>
+                            <constraint firstItem="ZdG-Yz-H3n" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="67" id="ZKk-HC-EhA"/>
+                            <constraint firstAttribute="trailing" secondItem="4d7-li-yEB" secondAttribute="trailing" constant="20" id="bCb-hG-eL2"/>
+                            <constraint firstItem="7Vp-09-pR5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="cVz-Ya-hPF"/>
+                            <constraint firstItem="ZdG-Yz-H3n" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="11" id="ety-Nt-hul"/>
+                            <constraint firstAttribute="trailing" secondItem="ZdG-Yz-H3n" secondAttribute="trailing" constant="10" id="iR1-fJ-slX"/>
+                            <constraint firstItem="4d7-li-yEB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="kkf-Kk-Buh"/>
+                            <constraint firstItem="rMX-jg-Cyg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="q1b-i0-eUg"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0F3-lD-GNx"/>
+                    <connections>
+                        <outlet property="changeCondition" destination="ZdG-Yz-H3n" id="RA2-xj-sj6"/>
+                        <outlet property="inputTextfield" destination="rMX-jg-Cyg" id="wWy-dI-b43"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DCB188961DB76E0F00FAA836 /* TakePictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB188941DB76E0F00FAA836 /* TakePictureCell.m */; };
+		DCB188971DB76E0F00FAA836 /* TakePictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCB188951DB76E0F00FAA836 /* TakePictureCell.xib */; };
+		DCB1889A1DB7766300FAA836 /* PicturesDisplayStyleService.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB188991DB7766300FAA836 /* PicturesDisplayStyleService.m */; };
 		DCBB50571DB7156700E787CF /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DCBB50561DB7156700E787CF /* Helper.m */; };
 		DCBB50631DB715FD00E787CF /* Helper+System.m in Sources */ = {isa = PBXBuildFile; fileRef = DCBB50621DB715FD00E787CF /* Helper+System.m */; };
 		DCE7047B1DB4E95000376E82 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE7047A1DB4E95000376E82 /* main.m */; };
@@ -47,6 +50,11 @@
 
 /* Begin PBXFileReference section */
 		DCB1888F1DB7614F00FAA836 /* FrameworkDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrameworkDefinition.h; path = DisplayPictures/FrameworkDefinition.h; sourceTree = "<group>"; };
+		DCB188931DB76E0F00FAA836 /* TakePictureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakePictureCell.h; sourceTree = "<group>"; };
+		DCB188941DB76E0F00FAA836 /* TakePictureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakePictureCell.m; sourceTree = "<group>"; };
+		DCB188951DB76E0F00FAA836 /* TakePictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TakePictureCell.xib; sourceTree = "<group>"; };
+		DCB188981DB7766300FAA836 /* PicturesDisplayStyleService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicturesDisplayStyleService.h; sourceTree = "<group>"; };
+		DCB188991DB7766300FAA836 /* PicturesDisplayStyleService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicturesDisplayStyleService.m; sourceTree = "<group>"; };
 		DCBB50551DB7156700E787CF /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
 		DCBB50561DB7156700E787CF /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		DCBB50611DB715FD00E787CF /* Helper+System.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Helper+System.h"; sourceTree = "<group>"; };
@@ -109,6 +117,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DCB188901DB76D8200FAA836 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				DCB188921DB76D9D00FAA836 /* TakePictureCell */,
+				DCB188911DB76D9500FAA836 /* DisplayPicturesCell */,
+			);
+			name = cells;
+			sourceTree = "<group>";
+		};
+		DCB188911DB76D9500FAA836 /* DisplayPicturesCell */ = {
+			isa = PBXGroup;
+			children = (
+				DCF1B2841DB5F042000B240D /* DisplayPicturesCell.h */,
+				DCF1B2851DB5F042000B240D /* DisplayPicturesCell.m */,
+				DCF1B2861DB5F042000B240D /* DisplayPicturesCell.xib */,
+			);
+			name = DisplayPicturesCell;
+			sourceTree = "<group>";
+		};
+		DCB188921DB76D9D00FAA836 /* TakePictureCell */ = {
+			isa = PBXGroup;
+			children = (
+				DCB188931DB76E0F00FAA836 /* TakePictureCell.h */,
+				DCB188941DB76E0F00FAA836 /* TakePictureCell.m */,
+				DCB188951DB76E0F00FAA836 /* TakePictureCell.xib */,
+			);
+			name = TakePictureCell;
+			sourceTree = "<group>";
+		};
 		DCBB50541DB7155900E787CF /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +250,8 @@
 				DCF1B2771DB5F02A000B240D /* BasicService.m */,
 				DCF1B2781DB5F02A000B240D /* ALAssetLibraryService.h */,
 				DCF1B2791DB5F02A000B240D /* ALAssetLibraryService.m */,
+				DCB188981DB7766300FAA836 /* PicturesDisplayStyleService.h */,
+				DCB188991DB7766300FAA836 /* PicturesDisplayStyleService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -220,11 +259,9 @@
 		DCF1B2811DB5F042000B240D /* DisplayPictures */ = {
 			isa = PBXGroup;
 			children = (
+				DCB188901DB76D8200FAA836 /* cells */,
 				DCF1B2821DB5F042000B240D /* DisplayPictures.h */,
 				DCF1B2831DB5F042000B240D /* DisplayPictures.m */,
-				DCF1B2841DB5F042000B240D /* DisplayPicturesCell.h */,
-				DCF1B2851DB5F042000B240D /* DisplayPicturesCell.m */,
-				DCF1B2861DB5F042000B240D /* DisplayPicturesCell.xib */,
 				DCF1B2931DB622D0000B240D /* PictureDatasources.h */,
 				DCF1B2941DB622D0000B240D /* PictureDatasources.m */,
 			);
@@ -341,6 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCF1B27E1DB5F02A000B240D /* source.xcassets in Resources */,
+				DCB188971DB76E0F00FAA836 /* TakePictureCell.xib in Resources */,
 				DCF1B27D1DB5F02A000B240D /* Picture.storyboard in Resources */,
 				DCE704891DB4E95000376E82 /* LaunchScreen.storyboard in Resources */,
 				DCE704861DB4E95000376E82 /* Assets.xcassets in Resources */,
@@ -371,6 +409,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCBB50631DB715FD00E787CF /* Helper+System.m in Sources */,
+				DCB1889A1DB7766300FAA836 /* PicturesDisplayStyleService.m in Sources */,
+				DCB188961DB76E0F00FAA836 /* TakePictureCell.m in Sources */,
 				DCE704811DB4E95000376E82 /* ViewController.m in Sources */,
 				DCF1B2871DB5F042000B240D /* DisplayPictures.m in Sources */,
 				DCF1B2801DB5F02A000B240D /* ALAssetLibraryService.m in Sources */,

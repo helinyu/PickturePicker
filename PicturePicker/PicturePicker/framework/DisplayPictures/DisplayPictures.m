@@ -14,17 +14,25 @@
 
 #define String(CellCalssName) NSStringFromClass([CellCalssName class])
 #define DISPLAYPICTURECELL_STRING String(DisplayPicturesCell)
+#define TAKEPICTURECELL_STRING String(TakePictureCell)
 
 #pragma mark -- define cell minute space and number of row
 #define CELL_MIN_SPACING_FOR_CELL 5
 #define CELL_MIN_SPACING_FOR_LINE 5
 #define CELL_NUMBER_PER_ROW 5
 
+//cell 最小也得50
+#define CELL_MIN_WIDTH_LENGTH 50
+
+#define NUMBER_OF_TAKEPICTURECELL 1
+
 @interface DisplayPictures ()<DisplayPicturesCellSelectedDataSource>
 {
     NSMutableArray<ALAsset*> *_pictureSources;
      BOOL _hasSelected;
     NSMutableArray * _selectIndeses;
+    
+    PicturesDisplayStyle _picturesDisplayStyle;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *displayCollectionView;
 
@@ -43,7 +51,9 @@
 }
 
 - (void)configureVariableOfCollectionViewCellAtInitState {
+    
     [self.displayCollectionView registerNib:[UINib nibWithNibName:DISPLAYPICTURECELL_STRING bundle:nil] forCellWithReuseIdentifier:DISPLAYPICTURECELL_STRING];
+    [self.displayCollectionView registerNib:[UINib nibWithNibName:TAKEPICTURECELL_STRING bundle:nil] forCellWithReuseIdentifier:TAKEPICTURECELL_STRING];
     
     self.automaticallyAdjustsScrollViewInsets = false;
     
@@ -61,6 +71,10 @@
     if (self.navigationController) {
         UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithTitle:pictures_finishedChoice_text style:UIBarButtonItemStylePlain target:self action:@selector(pictureChiceHasFinished:)];
         self.navigationItem.rightBarButtonItem = rightBtnItem;
+    }
+    
+    if (_numberOfcolumn <= 0) {
+        _numberOfcolumn = CELL_NUMBER_PER_ROW;
     }
 
 }
@@ -97,7 +111,15 @@
 #pragma mark -- collection Datasource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return _pictureSources.count;
+    switch (_picturesDisplayStyle) {
+        case PicturesDisplayStyleOutSide:
+        case PicturesDisplayStyleDefaultOrNot:
+        return _pictureSources.count;
+        break;
+        case PicturesDisplayStyleFirstOfInside:
+        case PicturesDisplayStyleBottomOfInside:
+        return _pictureSources.count + NUMBER_OF_TAKEPICTURECELL;
+    }
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -110,10 +132,45 @@
         }
     }
     
-    [picturesCell configureCellWithDataSource:_pictureSources[indexPath.row] andSelectedOrNot:_hasSelected withSelectedIndex:indexPath.row];
-    _hasSelected = false;
-    picturesCell.selectedDataSource = self;
-    return picturesCell;
+    switch (_picturesDisplayStyle) {
+        case PicturesDisplayStyleDefaultOrNot:
+        case PicturesDisplayStyleOutSide:
+        {
+            [picturesCell configureCellWithDataSource:_pictureSources[indexPath.row] andSelectedOrNot:_hasSelected withSelectedIndex:indexPath.row];
+            _hasSelected = false;
+            picturesCell.selectedDataSource = self;
+            return picturesCell;
+        }
+        break;
+        case PicturesDisplayStyleBottomOfInside:
+        {
+            if (indexPath.row == _pictureSources.count) {
+                TakePictureCell *takePicturesCell = [collectionView dequeueReusableCellWithReuseIdentifier:TAKEPICTURECELL_STRING forIndexPath:indexPath];
+                return takePicturesCell;
+            }
+            
+            [picturesCell configureCellWithDataSource:_pictureSources[indexPath.row] andSelectedOrNot:_hasSelected withSelectedIndex:indexPath.row];
+            _hasSelected = false;
+            picturesCell.selectedDataSource = self;
+            return picturesCell;
+
+        }
+        break;
+        case PicturesDisplayStyleFirstOfInside:
+        {
+            if (indexPath.row == 0) {
+                TakePictureCell *takePicturesCell = [collectionView dequeueReusableCellWithReuseIdentifier:TAKEPICTURECELL_STRING forIndexPath:indexPath];
+                return takePicturesCell;
+            }
+
+            [picturesCell configureCellWithDataSource:_pictureSources[indexPath.row-NUMBER_OF_TAKEPICTURECELL] andSelectedOrNot:_hasSelected withSelectedIndex:indexPath.row];
+            _hasSelected = false;
+            picturesCell.selectedDataSource = self;
+            return picturesCell;
+
+        }
+        break;
+    }
 }
 
 #pragma mark -- selectedDatasource
@@ -129,7 +186,11 @@
 #pragma mark -- UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake( (([UIScreen mainScreen].bounds.size.width + CELL_MIN_SPACING_FOR_CELL) / CELL_NUMBER_PER_ROW) - CELL_MIN_SPACING_FOR_CELL, (([UIScreen mainScreen].bounds.size.width + CELL_MIN_SPACING_FOR_CELL) / CELL_NUMBER_PER_ROW) - CELL_MIN_SPACING_FOR_CELL);
+    CGFloat cell_size_length = (([UIScreen mainScreen].bounds.size.width + CELL_MIN_SPACING_FOR_CELL) / _numberOfcolumn) - CELL_MIN_SPACING_FOR_CELL;
+    if (cell_size_length < CELL_MIN_WIDTH_LENGTH) {
+        return CGSizeMake(CELL_MIN_WIDTH_LENGTH,CELL_MIN_WIDTH_LENGTH);
+    }
+    return CGSizeMake(cell_size_length,cell_size_length);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -155,6 +216,11 @@
         [fromController.navigationController pushViewController:self animated:true];
     }
     _datasoucesCallback = callback;
+}
+    
+- (void)showPhotoLibraryPhtosFrom:(UIViewController*)fromController withPicturesDisplayStyle:(PicturesDisplayStyle)style Complete:(ArrayALAssetsBlock)callback {
+       [self showPhotoLibraryPhtosFrom:fromController Complete:callback];
+    _picturesDisplayStyle = style;
 }
     
 - (void)didReceiveMemoryWarning {

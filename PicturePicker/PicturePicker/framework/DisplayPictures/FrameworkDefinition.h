@@ -11,4 +11,5 @@
 
 #define pictures_finishedChoice_text @"完成"
 
+
 #endif /* FrameworkDefinition_h */

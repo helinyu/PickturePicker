@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TakePictureCell">
+            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p8A-eU-1Eo">
+                        <color key="backgroundColor" red="0.19856953620000001" green="0.19856357569999999" blue="0.1985669434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="onPicturesTakeClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="zPm-w3-Shb"/>
+                        </connections>
+                    </button>
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_common_camera" translatesAutoresizingMaskIntoConstraints="NO" id="TbL-gf-3BI"/>
+                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击拍照" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hmp-SU-6cj">
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="p8A-eU-1Eo" secondAttribute="trailing" id="2jL-LM-kIz"/>
+                <constraint firstItem="Hmp-SU-6cj" firstAttribute="bottom" secondItem="p8A-eU-1Eo" secondAttribute="bottom" constant="-5" id="4L7-T6-elY"/>
+                <constraint firstItem="TbL-gf-3BI" firstAttribute="centerY" secondItem="p8A-eU-1Eo" secondAttribute="centerY" id="5p2-rm-fGT"/>
+                <constraint firstItem="TbL-gf-3BI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="AwD-6v-c5M"/>
+                <constraint firstItem="Hmp-SU-6cj" firstAttribute="centerX" secondItem="p8A-eU-1Eo" secondAttribute="centerX" id="CyA-SH-Xzs"/>
+                <constraint firstAttribute="bottom" secondItem="p8A-eU-1Eo" secondAttribute="bottom" id="Lgu-8c-XGa"/>
+                <constraint firstItem="TbL-gf-3BI" firstAttribute="centerX" secondItem="p8A-eU-1Eo" secondAttribute="centerX" id="RBn-zM-9tJ"/>
+                <constraint firstItem="p8A-eU-1Eo" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="gmm-Vi-oZb"/>
+                <constraint firstItem="TbL-gf-3BI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="mFS-LV-SMF"/>
+                <constraint firstItem="p8A-eU-1Eo" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="vUK-Mi-fQp"/>
+            </constraints>
+            <size key="customSize" width="104" height="86"/>
+            <point key="canvasLocation" x="52" y="70"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="btn_common_camera" width="54" height="40"/>
+    </resources>
+</document>
