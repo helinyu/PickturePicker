@@ -10,6 +10,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "PictureDatasources.h"
 #import "Helper+System.h"
+#import "FrameworkDefinition.h"
 
 #define String(CellCalssName) NSStringFromClass([CellCalssName class])
 #define DISPLAYPICTURECELL_STRING String(DisplayPicturesCell)
@@ -27,8 +28,8 @@
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *displayCollectionView;
 
-typedef void (^ALAssetsGroupBlock)(ALAssetsGroup *result);
-
+@property (nonatomic) ArrayALAssetsBlock  datasoucesCallback;
+    
 @end
 
 @implementation DisplayPictures
@@ -56,6 +57,12 @@ typedef void (^ALAssetsGroupBlock)(ALAssetsGroup *result);
 - (void)configureNomalVariables {
     _pictureSources = [NSMutableArray<ALAsset*> new];
     _selectIndeses = [NSMutableArray new];
+    
+    if (self.navigationController) {
+        UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithTitle:pictures_finishedChoice_text style:UIBarButtonItemStylePlain target:self action:@selector(pictureChiceHasFinished:)];
+        self.navigationItem.rightBarButtonItem = rightBtnItem;
+    }
+
 }
 
 - (void)configureDataSourceAtInitState {
@@ -70,6 +77,21 @@ typedef void (^ALAssetsGroupBlock)(ALAssetsGroup *result);
             [_pictureSources addObject:result];
         }];
     }];
+}
+    
+#pragma mark -- UIbarButton
+- (void)pictureChiceHasFinished:(UIBarButtonItem *)btnItem {
+    NSLog(@"完成选择");
+
+    [self.navigationController popViewControllerAnimated:true];
+    
+    NSMutableArray<ALAsset*>* datasource = [NSMutableArray<ALAsset*> new];
+    for ( NSInteger index =0 ;index <_selectIndeses.count; index++ ) {
+        NSInteger sourceIndex = [_selectIndeses[index] integerValue];
+        [datasource addObject:_pictureSources[sourceIndex]];
+    }
+    _datasoucesCallback(datasource);
+
 }
 
 #pragma mark -- collection Datasource
@@ -128,6 +150,13 @@ typedef void (^ALAssetsGroupBlock)(ALAssetsGroup *result);
     NSLog(@"cancelPrefetchingForItemsAtIndexPaths");
 }
 
+- (void)showPhotoLibraryPhtosFrom:(UIViewController*)fromController Complete:(ArrayALAssetsBlock)callback {
+    if (fromController.navigationController) {
+        [fromController.navigationController pushViewController:self animated:true];
+    }
+    _datasoucesCallback = callback;
+}
+    
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

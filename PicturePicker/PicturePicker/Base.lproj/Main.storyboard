@@ -19,9 +19,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPe-QB-TeP">
-                                <frame key="frameInset" minX="16" minY="79" width="77" height="28"/>
+                                <frame key="frameInset" minX="16" minY="79" width="227" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="相册图片"/>
+                                <state key="normal" title="相册图片（全部显示）"/>
                                 <connections>
                                     <action selector="onDisplayPhotoLibraryClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6ES-Lh-a5h"/>
                                 </connections>
@@ -33,7 +33,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="952.79999999999995" y="-544.67766116941539"/>
+            <point key="canvasLocation" x="952.79999999999995" y="-545.57721139430294"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Qcw-Hs-POk">

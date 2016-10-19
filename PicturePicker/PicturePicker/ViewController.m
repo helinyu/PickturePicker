@@ -24,7 +24,12 @@
 }
 
 - (IBAction)onDisplayPhotoLibraryClicked:(id)sender {
-    [self.navigationController pushViewController:[[UIStoryboard storyboardWithName:@"Picture" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([DisplayPictures class])] animated:true];
+
+    DisplayPictures * dpViewController = [[UIStoryboard storyboardWithName:@"Picture" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([DisplayPictures class])];
+    [dpViewController showPhotoLibraryPhtosFrom:self Complete:^(NSMutableArray<ALAsset *> *result) {
+        NSLog(@"alasset is : %@",result);
+    }];
+    
 }
 
 @end
