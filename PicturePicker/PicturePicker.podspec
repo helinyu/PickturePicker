@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-   Help developer to quickly intergrate picture picker from photo library
+   Help developer to quickly intergrate picture picker from photo library PicturePicker
   DESC
 
   s.homepage     = "https://github.com/helinyu/PickturePicker"
