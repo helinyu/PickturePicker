@@ -1,15 +1,14 @@
 Pod::Spec.new do |s|
 s.name        = "ipaynowplugin"
-s.version      = "1.0.0"
-s.summary      = "ipaynowplugin SDK"
+s.version      = "0.0.1"
+s.summary      = "PickturePicker"
 s.description  = <<-DESC
    Help developer to quickly intergrate variety of payment methods
 DESC
 s.homepage    = "https://github.com/helinyu/PickturePicker"
-s.license      = "MIT"
 s.author      = { "Hstripe" => "felix" }
 s.platform    = :ios, '8.0'
-s.source      = { :git => "https://github.com/helinyu/PickturePic", :tag => s.version }
+s.source      = { :git => "https://github.com/helinyu/PickturePicker.git", :tag => s.version }
 s.default_subspec = 'Core'
 s.requires_arc = true
 s.subspec 'Core' do |core|
