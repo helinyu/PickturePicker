@@ -25,6 +25,7 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
+   Help developer to quickly intergrate picture picker from photo library
                    DESC
 
   s.homepage     = "http://EXAMPLE/PicturePicker"
@@ -53,8 +54,8 @@ Pod::Spec.new do |s|
   #
 
   s.author             = { "felix" => "2319979647@qq.com" }
-  # Or just: s.author    = "felix"
-  # s.authors            = { "felix" => "2319979647@qq.com" }
+  Or just: s.author    = "felix"
+  s.authors            = { "felix" => "2319979647@qq.com" }
   # s.social_media_url   = "http://twitter.com/felix"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -63,14 +64,14 @@ Pod::Spec.new do |s|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  # s.platform     = :ios
-  # s.platform     = :ios, "5.0"
+  s.platform     = :ios
+  s.platform     = :ios, "8.0"
 
   #  When using multiple platforms
-  # s.ios.deployment_target = "5.0"
-  # s.osx.deployment_target = "10.7"
-  # s.watchos.deployment_target = "2.0"
-  # s.tvos.deployment_target = "9.0"
+  s.ios.deployment_target = "8.0"
+  s.osx.deployment_target = "10.7"
+  s.watchos.deployment_target = "2.0"
+  s.tvos.deployment_target = "9.0"
 
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
