@@ -50,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DC14CBB61DB893D8000CC186 /* PicturePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PicturePicker.h; sourceTree = "<group>"; };
 		DCB1888F1DB7614F00FAA836 /* FrameworkDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrameworkDefinition.h; path = DisplayPictures/FrameworkDefinition.h; sourceTree = "<group>"; };
 		DCB188981DB7766300FAA836 /* PicturesDisplayStyleService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicturesDisplayStyleService.h; sourceTree = "<group>"; };
 		DCB188991DB7766300FAA836 /* PicturesDisplayStyleService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicturesDisplayStyleService.m; sourceTree = "<group>"; };
@@ -243,6 +244,7 @@
 		DCF1B26C1DB5F02A000B240D /* framework */ = {
 			isa = PBXGroup;
 			children = (
+				DC14CBB61DB893D8000CC186 /* PicturePicker.h */,
 				DCB1888F1DB7614F00FAA836 /* FrameworkDefinition.h */,
 				DCF1B2721DB5F02A000B240D /* Picture.storyboard */,
 				DCB188AA1DB794D400FAA836 /* PreviewPictures */,
