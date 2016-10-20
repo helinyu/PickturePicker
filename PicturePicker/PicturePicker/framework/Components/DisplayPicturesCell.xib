@@ -16,7 +16,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iJy-cN-xR0"/>
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iJy-cN-xR0"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ZN-Os-GBi" userLabel="backbtn clicked">
+                        <connections>
+                            <action selector="onChooseClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="FQF-Xa-jR8"/>
+                        </connections>
+                    </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zTM-zb-k6g" userLabel="choose btn">
                         <constraints>
                             <constraint firstAttribute="width" secondItem="zTM-zb-k6g" secondAttribute="height" multiplier="24:25" id="EZ5-9v-UxG"/>
@@ -24,9 +29,6 @@
                         </constraints>
                         <state key="normal" image="icon_common_picker_unselected"/>
                         <state key="selected" image="icon_common_picker_selected"/>
-                        <connections>
-                            <action selector="onChooseClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="YQe-m8-epU"/>
-                        </connections>
                     </button>
                 </subviews>
             </view>
@@ -35,7 +37,11 @@
                 <constraint firstItem="iJy-cN-xR0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="LoE-ov-yMB"/>
                 <constraint firstAttribute="trailing" secondItem="iJy-cN-xR0" secondAttribute="trailing" id="NeY-8W-w0G"/>
                 <constraint firstAttribute="bottom" secondItem="iJy-cN-xR0" secondAttribute="bottom" id="URf-f2-gQF"/>
+                <constraint firstItem="8ZN-Os-GBi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Ym5-pZ-Ah4"/>
+                <constraint firstAttribute="trailing" secondItem="8ZN-Os-GBi" secondAttribute="trailing" id="ZgO-v7-ZIx"/>
+                <constraint firstItem="8ZN-Os-GBi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="atf-r2-3zf"/>
                 <constraint firstItem="zTM-zb-k6g" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="sh7-HY-9la"/>
+                <constraint firstAttribute="bottom" secondItem="8ZN-Os-GBi" secondAttribute="bottom" id="w5g-4O-p8Q"/>
                 <constraint firstAttribute="trailing" secondItem="zTM-zb-k6g" secondAttribute="trailing" id="zmk-3T-2aO"/>
             </constraints>
             <size key="customSize" width="88" height="71"/>
