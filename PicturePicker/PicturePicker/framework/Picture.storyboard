@@ -85,8 +85,20 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="264" height="354"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8ml-YT-pQQ"/>
+                                            </subviews>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="8ml-YT-pQQ" firstAttribute="leading" secondItem="2h4-wx-VQa" secondAttribute="leading" id="It7-cr-0kT"/>
+                                            <constraint firstAttribute="bottom" secondItem="8ml-YT-pQQ" secondAttribute="bottom" id="jmY-lh-Apa"/>
+                                            <constraint firstItem="8ml-YT-pQQ" firstAttribute="top" secondItem="2h4-wx-VQa" secondAttribute="top" id="pEU-CI-hSa"/>
+                                            <constraint firstAttribute="trailing" secondItem="8ml-YT-pQQ" secondAttribute="trailing" id="xxd-d3-V47"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="8ml-YT-pQQ" id="fL7-bK-tGs"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -103,6 +115,9 @@
                             <constraint firstAttribute="trailing" secondItem="uD1-TS-z5c" secondAttribute="trailing" id="whz-Ee-rL2"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="uD1-TS-z5c" id="q1g-5b-uQt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o08-qN-yIJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

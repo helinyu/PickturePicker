@@ -13,7 +13,14 @@
 @protocol DisplayPicturesCellSelectedDataSource <NSObject>
 
 - (BOOL)updateSelectedPictureWithIndex:(NSInteger)index withSelectedOrNot:(BOOL)selected;
-    
+
+@end
+
+@protocol DisplayPicturesCellSelectedDelegate <NSObject>
+@optional
+- (BOOL)previewPictureAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)previewPictureAtIndex:(NSInteger)index;
+
 @end
 
 @interface DisplayPicturesCell : UICollectionViewCell
@@ -24,5 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *pictureImageView;
     
 @property (weak, nonatomic) id<DisplayPicturesCellSelectedDataSource> selectedDataSource;
+
+@property (weak, nonatomic) id<DisplayPicturesCellSelectedDelegate> selectedPictureDelegate;
 
 @end

@@ -11,6 +11,10 @@
 
 #define pictures_finishedChoice_text @"完成"
 #define pictures_preview_text @"预览"
+#define back_navitaion_text @"返回"
+#define preview_all_text @"预览全部"
 
+
+#define PictureStoryName @"Picture"
 
 #endif /* FrameworkDefinition_h */

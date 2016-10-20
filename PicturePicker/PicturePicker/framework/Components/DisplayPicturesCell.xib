@@ -19,7 +19,7 @@
                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iJy-cN-xR0"/>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ZN-Os-GBi" userLabel="backbtn clicked">
                         <connections>
-                            <action selector="onChooseClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="FQF-Xa-jR8"/>
+                            <action selector="onPreviewPictureHaschoicedClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="plK-iA-N3X"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zTM-zb-k6g" userLabel="choose btn">
@@ -29,6 +29,9 @@
                         </constraints>
                         <state key="normal" image="icon_common_picker_unselected"/>
                         <state key="selected" image="icon_common_picker_selected"/>
+                        <connections>
+                            <action selector="onChooseClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="y7C-yl-3PR"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>

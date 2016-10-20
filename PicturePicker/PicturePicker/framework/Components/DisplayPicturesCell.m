@@ -39,4 +39,12 @@
     
 }
 
+- (IBAction)onPreviewPictureHaschoicedClicked:(id)sender {
+
+    NSLog(@"预览所有的图片");
+    [self.selectedPictureDelegate previewPictureAtIndex:self.choiceBtn.tag];
+
+}
+
+
 @end

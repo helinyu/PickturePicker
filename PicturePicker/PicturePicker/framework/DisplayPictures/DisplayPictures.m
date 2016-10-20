@@ -11,6 +11,7 @@
 #import "PictureDatasources.h"
 #import "Helper+System.h"
 #import "FrameworkDefinition.h"
+#import "PreviewPictures.h"
 
 #define choiceNumberAndAllRatio_DisplayOnTitle self.navigationItem.title = [NSString stringWithFormat:@"%lu/%d",(unsigned long)_selectIndeses.count,_numberOfAsset];
 
@@ -29,9 +30,10 @@
 
 #define NUMBER_OF_TAKEPICTURECELL 1
 
-@interface DisplayPictures ()<DisplayPicturesCellSelectedDataSource>
+@interface DisplayPictures ()<DisplayPicturesCellSelectedDataSource,DisplayPicturesCellSelectedDelegate>
 {
     NSMutableArray<ALAsset*> *_pictureSources;
+    ALAssetsGroup *_picturesALGroupSources;
     NSInteger _numberOfAsset;
     NSMutableArray * _selectIndeses;
     PicturesDisplayStyle _picturesDisplayStyle;
@@ -66,11 +68,16 @@
     
     if (self.navigationController) {
         UIBarButtonItem *lastSecondRightBtnItem = [[UIBarButtonItem alloc] initWithTitle:pictures_preview_text style:UIBarButtonItemStylePlain target:self action:@selector(onPicturePreview:)];
-        lastSecondRightBtnItem.tintColor = [UIColor redColor];
+        lastSecondRightBtnItem.tintColor = [UIColor blueColor];
         UIBarButtonItem *lastRightBtnItem = [[UIBarButtonItem alloc] initWithTitle:pictures_finishedChoice_text style:UIBarButtonItemStylePlain target:self action:@selector(pictureChoiceHasFinished:)];
-        lastRightBtnItem.tintColor = [UIColor blueColor];
-        
+        lastRightBtnItem.tintColor = [UIColor redColor];
         self.navigationItem.rightBarButtonItems = @[lastRightBtnItem,lastSecondRightBtnItem];;
+        
+        UIBarButtonItem *backLeftBarItem = [[UIBarButtonItem alloc] initWithTitle:back_navitaion_text style:UIBarButtonItemStylePlain target:self action:@selector(goBack)];
+        backLeftBarItem.tintColor = [UIColor grayColor];
+        UIBarButtonItem *leftLastSecondItem = [[UIBarButtonItem alloc] initWithTitle:preview_all_text style:UIBarButtonItemStylePlain target:self action:@selector(previewAllPictures:)];
+        leftLastSecondItem.tintColor = [UIColor blueColor];
+        self.navigationItem.leftBarButtonItems = @[backLeftBarItem,leftLastSecondItem];
     }
 
 }
@@ -89,6 +96,8 @@
 - (void)configureDataSourceAtInitState {
     [PictureDatasources requestAllPhotoFromAlbumWithALAssetsGroup:^(ALAssetsGroup *resultOfGroup) {
         NSLog(@"group is : %@",resultOfGroup);
+        _picturesALGroupSources = [ALAssetsGroup new];
+        _picturesALGroupSources = resultOfGroup;
         [resultOfGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
             if ( result == nil || index == NSIntegerMax || index == NSUIntegerMax ) {
                 [self.displayCollectionView reloadData];
@@ -121,6 +130,19 @@
     }
     _datasoucesCallback(datasource);
 
+}
+
+- (void)goBack {
+    
+    if (self.navigationController) {
+        [self.navigationController popViewControllerAnimated:true];
+    }else{
+        [self dismissViewControllerAnimated:true completion:nil];
+    }
+}
+
+- (void)previewAllPictures:(UIBarButtonItem *) btnItem {
+    NSLog(@"preview all pictures");
 }
 
 #pragma mark -- collection Datasource
@@ -156,6 +178,7 @@
             [picturesCell configureCellWithDataSource:_pictureSources[indexPath.row] andSelectedOrNot:hasSelected withSelectedIndex:indexPath.row];
             hasSelected = false;
             picturesCell.selectedDataSource = self;
+            picturesCell.selectedPictureDelegate = self;
             return picturesCell;
         }
         break;
@@ -168,6 +191,7 @@
             
             [picturesCell configureCellWithDataSource:_pictureSources[indexPath.row] andSelectedOrNot:hasSelected withSelectedIndex:indexPath.row];
             picturesCell.selectedDataSource = self;
+            picturesCell.selectedPictureDelegate = self;
             return picturesCell;
 
         }
@@ -181,6 +205,7 @@
 
             [picturesCell configureCellWithDataSource:_pictureSources[indexPath.row-NUMBER_OF_TAKEPICTURECELL] andSelectedOrNot:hasSelected withSelectedIndex:indexPath.row];
             picturesCell.selectedDataSource = self;
+            picturesCell.selectedPictureDelegate = self;
             return picturesCell;
 
         }
@@ -206,7 +231,24 @@
     choiceNumberAndAllRatio_DisplayOnTitle
     return true;
 }
+
+#pragma mark -- selectedPicturesDelegate
+
+- (BOOL)previewPictureAtIndex:(NSInteger)index {
+    NSLog(@"index: %d",index);
     
+    PreviewPictures *previewPictures = [[UIStoryboard storyboardWithName:PictureStoryName bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([PreviewPictures class])];
+    [previewPictures passValueToDatasource:_pictureSources];
+    [previewPictures passValueToGroupDatasource:_picturesALGroupSources];
+    
+    if (self.navigationController) {
+        [self.navigationController pushViewController:previewPictures animated:true];
+    }else{
+        [self presentViewController:previewPictures animated:true completion:nil];
+    }
+    return true;
+}
+
 #pragma mark -- UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
